@@ -1,0 +1,72 @@
+<header></header>
+<body>
+<p>Bienvenido a la practica de JavaScript</p>
+<p><br> Para iniciar el juego pulsa el boton. Para salir coloca 0</p>
+
+
+
+
+<p><br></p>
+<!--Boton para iniciar el juego con un ID-->
+<button id="mi_btn">Boton</button>
+<p>Resultado del juego: <br></p>
+<res>
+</res>
+<cont></cont>
+</body>
+
+<script>
+//busco en el JavaScript el elemento con el ID y le añado un event listener (evento,funcion,false)
+document.getElementById("mi_btn").addEventListener("click",jugar,false);
+function jugar() {
+
+	//Declaracion de variables minimas y maximas
+	var max =100;
+	var min = 1;
+
+	//Genero un numero random y este se lo multiplico por la diferencia entre el maximo y el minimo
+	var numero_random = Math.random() * (max-min)+min;
+	//Paso a entero el numero random
+	numero_random = parseInt(numero_random);
+
+	//Muestro por consola el numero random
+	console.log("Numero Random: "+ numero_random);
+
+	//Mensaje de bienvenida
+	var mensaje = "Ingresa un numero entre 1 y 100";
+
+	while(true){
+		//prompt ==> Alert con mensaje y valor por defecto
+		var numero_user = prompt(mensaje,"0");
+		//Cualquier numero que ingrese el usuario se pasa a entero
+		numero_user = parseInt(numero_user);
+	
+		//El usuario acierta el numero 
+		if(numero_user == numero_random){
+			alert("Felicidades has acertado al numero!!!");
+			document.querySelector("res").innerHTML = "Ganaste, felicidades!!!";
+			break;
+		}
+		//El usuario sale del programa
+		else if(numero_user === 0){
+			document.querySelector("res").innerHTML = "Saliste del juego";
+		
+			break;
+		}
+		else if(numero_user<min || numero_user>max){
+			mensaje="Debes colocar un numero valido";
+		}
+		//El usuario ingresa un numero mayor
+		else if(numero_user > numero_random){
+			mensaje= "El numero ingresado es mayor al numero aleatorio";
+		//El usuario ingresa un numero menor
+		}else if(numero_user < numero_random){
+			mensaje = "El numero ingresado es menor al numero aleatorio";
+		}
+	
+}
+
+
+}
+
+</script>
